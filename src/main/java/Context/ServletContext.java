@@ -86,7 +86,7 @@ public class ServletContext {
         }
     }
 
-    //根据serverlet的name匹配出serverlet
+    //根据serverlet的name匹配serverlet
     public Servlet getServerlet(String url) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
         if(url==null||(url.trim().equals(""))){
             return  null;
