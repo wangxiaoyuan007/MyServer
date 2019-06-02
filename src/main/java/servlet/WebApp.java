@@ -7,6 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 /**
  * @auther: wxy
  * @date: 2019/5/27 22:39
+ * 持有servlet上下文信息
  */
 public class WebApp {
     private  static ServletContext context;

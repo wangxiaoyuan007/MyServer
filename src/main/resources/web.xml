@@ -3,12 +3,12 @@
     <serverlets>
         <servlet>
             <name>Login</name>
-            <servlet-name>servlet.LoginServlet</servlet-name>
+            <servlet-name>servlet.LoginHttpServlet</servlet-name>
 
         </servlet>
         <servlet>
             <name>Register</name>
-            <servlet-name>servlet.RegisterServlet</servlet-name>
+            <servlet-name>servlet.RegisterHttpServlet</servlet-name>
         </servlet>
 
     </serverlets>

@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @auther: wxy
  * @date: 2019/5/29 12:42
+ * 整个服务器启动入口
  */
 @Slf4j
 public class Bootstrap {

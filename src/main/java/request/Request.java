@@ -2,12 +2,11 @@ package request;
 
 import cookie.Cookie;
 import lombok.extern.slf4j.Slf4j;
-import servlet.Dispatcher;
+import servlet.DispatcherServlet;
 import servlet.WebApp;
 import session.HttpSession;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.*;
@@ -30,7 +29,7 @@ public class Request {
     private HttpSession session;
     private Cookie [] cookies;
     private Map<String,List<String>> headers;
-    private Dispatcher requestHandler;
+    private DispatcherServlet requestHandler;
 
     //请求
     private String requestInfo;
@@ -78,13 +77,13 @@ public class Request {
         this.method=firstLine.substring(0,requestInfo.indexOf("/")).trim();
         String urlStr=firstLine.substring(requestInfo.indexOf("/"),requestInfo.indexOf("HTTP/"));
         if(this.method.equals("POST") || this.method.equals("post")){
-            this.url=urlStr;
+            this.url=urlStr.trim();
             paramsterString=requestInfo.substring(requestInfo.lastIndexOf(CRLF)).trim();
         }else  if(this.method.equals("GET")){
             //如果为GET方式，参数可能跟在url后面 如 /xxx?a=1&b=2
             if(urlStr.contains("?")){
                 String [] urlArr= urlStr.split("\\?");
-                this.url=urlArr[0];
+                this.url=urlArr[0].trim();
                 paramsterString=urlArr[1];
             }else {
                 this.url=urlStr;
@@ -131,10 +130,10 @@ public class Request {
         } else {
             this.cookies = new Cookie[0];
         }
-        log.info("Cookies:{}", Arrays.toString(cookies));
+
     }
 
-    //解析 a=2?b=9
+    //解析参数 a=2?b=9
     private void parseParams(String paramsterString) {
         StringTokenizer tokenizer = new StringTokenizer(paramsterString,"&");
         while (tokenizer.hasMoreTokens()){
@@ -226,7 +225,7 @@ public class Request {
         return url;
     }
 
-    public void setRequestHandler(Dispatcher requestHandler) {
+    public void setRequestHandler(DispatcherServlet requestHandler) {
         this.requestHandler = requestHandler;
     }
 }
