@@ -7,7 +7,7 @@ import listenner.even.ServletContextEvent;
 import mapping.ServerletMapping;
 import mapping.UrlMapping;
 import response.Response;
-import servlet.Servlet;
+import servlet.HttpServlet;
 import servlet.WebApp;
 import session.HttpSession;
 import utils.UUIDUtil;
@@ -23,8 +23,8 @@ import java.util.concurrent.ConcurrentHashMap;
  * @date: 2019/5/27 22:35
  */
 public class ServletContext {
-    //为每一个serverlet取一个别名 如Login->LoginServlet
-    private Map<String, Servlet> serverlet;
+    //为每一个serverlet取一个别名 如Login->LoginHttpServlet
+    private Map<String, HttpServlet> serverlet;
     //url->Login
     private Map<String,String> mapping;
     private ServerletHandler serverletHandler ;
@@ -67,7 +67,7 @@ public class ServletContext {
         for(Map.Entry<String, ServerletMapping> e:serverletHandler.getServerlets().entrySet()){
             if(serverlet.get(e.getKey())==null){
                 try {
-                    serverlet.put(e.getKey().trim(),(Servlet) WebApp.class.forName(e.getValue().getServerletName()).getConstructor().newInstance());
+                    serverlet.put(e.getKey().trim(),(HttpServlet) WebApp.class.forName(e.getValue().getServerletName()).getConstructor().newInstance());
                 } catch (ClassNotFoundException e1) {
                     e1.printStackTrace();
                 } catch (IllegalAccessException e1) {
@@ -87,7 +87,7 @@ public class ServletContext {
     }
 
     //根据serverlet的name匹配serverlet
-    public Servlet getServerlet(String url) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+    public HttpServlet getServerlet(String url) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
         if(url==null||(url.trim().equals(""))){
             return  null;
         }
@@ -142,11 +142,11 @@ public class ServletContext {
     }
 
 
-    public Map<String, Servlet> getServerlet() {
+    public Map<String, HttpServlet> getServerlet() {
         return serverlet;
     }
 
-    public void setServerlet(Map<String, Servlet> serverlet) {
+    public void setServerlet(Map<String, HttpServlet> serverlet) {
         this.serverlet = serverlet;
     }
 
