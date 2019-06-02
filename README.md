@@ -17,4 +17,4 @@ ___
 服务端主要有三个角色：Reactor，Acceptor和Pool下面是整体流程，具体详情请
 查看代码。
 
-![image](http://markdown-1252651195.cossh.myqcloud.com/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6.jpg)
+![image](https://github.com/wangxiaoyuan007/MyServer/blob/master/src/main/resources/web/ServerProcess.png)
