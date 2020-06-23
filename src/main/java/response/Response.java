@@ -65,7 +65,7 @@ public class Response {
         //2.响应头
         headInfo.append("Server:bjsxt Server/0.0.1").append(CRLF);
         headInfo.append("Date:").append(new Date()).append(CRLF);
-        headInfo.append("Content-Type:text/html; charset=UTF-8").append(CRLF);
+        headInfo.append("content-type:application/json;charset=utf-8").append(CRLF);
         if (headers.size() > 0) {
             for (Header header : headers) {
                 headInfo.append(header.getKey()).append(":").append(BLANK).append(header.getValue()).append(CRLF);
@@ -77,7 +77,7 @@ public class Response {
                 headInfo.append("Set-Cookie:").append(BLANK).append(cookie.getKey()).append("=").append(cookie.getValue()).append(CRLF);
             }
         }
-        headInfo.append("Content-Length").append(len).append(CRLF);
+        headInfo.append("Content-Length:").append(len).append(CRLF);
         headInfo.append(CRLF);
     }
     /**

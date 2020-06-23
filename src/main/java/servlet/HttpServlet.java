@@ -17,6 +17,6 @@ public abstract class HttpServlet {
     }
     public  abstract void doGet(Request req, Response rep);
 
-    public abstract  void doPost(Request req, Response rep);
+    public abstract  void doPost(Request req, Response rep) throws IOException;
     public abstract void destory(Request request, Response response);
 }
